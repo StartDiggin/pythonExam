@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Friend Home</title>
+  </head>
+  <body>
+    <div class="header">
+      <a href="/logout">Logout</a>
+    </div>
+    <h1>Hello, {{ user.first_name }}</h1>
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+      <table>
+        <tr>
+          <th>Alias:</th>
+          <th>Actions:</th>
+        </tr>
+        {% for list in userFriends %}
+        <tr>
+          <td>{{ list.userfriend.get.alias }}</td>
+          <td><a href="/friend/show/{{ list.userfriend.get.id }}">View Profile</a> | <a href="/friend/remove/{{ list.id }}">Remove as Friend</a></td>
+        </tr>
+        {% endfor %}
+
+
+      </table>
+    <h1>Other users Friend's List:</h1>
+      <table>
+        <tr>
+          <th>Alias: {{ friend }}</th>
+          <th>Actions:</th>
+        </tr>
+        {% for friend in otherUsers %}
+        <tr>
+          <td><a href="/friend/show/{{ friend.id }}">{{ friend.alias }}</a></td>
+          <td><a href="/friend/add/{{ friend.id }}">Add as Friend</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+
+
+  </body>
+  <style media="screen">
+  .header{
+    text-align: right;
+  }
+    table{
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      td, th{
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      tr:nth-child(even){
+        background-color: #dddddd;
+      }
+  </style>
+</html>
